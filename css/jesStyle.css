@@ -1,0 +1,85 @@
+﻿body {
+    background-color: lightgray;
+}
+
+._heading {
+    position: fixed;
+    height: 50px;
+    font-size: 35px;
+    background-color: black;
+    color: darkgray;
+    width: 100%;
+    box-shadow: gray 0 0 15px 5px;
+    z-index: 10;
+}
+
+.btn {
+    background-color: #555;
+    color: white;
+}
+
+    .btn:focus {
+        color: white;
+        outline: none;
+    }
+
+#btnHeaderBtn {
+    float: right;
+    margin: 7px;
+}
+
+._body {
+    text-align: center;
+}
+
+._card {
+    width: 80%;
+    margin: 0 auto;
+    background-color: black;
+    color: white;
+}
+
+._cardHead {
+    text-align: center;
+    height: 25px;
+    font-size: 18px;
+    background-color: #555;
+    color: white;
+}
+
+._cardFoot {
+    text-align: center;
+    height: 25px;
+    font-size: 18px;
+    background-color: #555;
+    color: white;
+    bottom: 0;
+}
+
+._cardContainer {
+    font-size: large;
+    color: darkgray;
+    margin: 5px;
+}
+
+#_loadingImgParent {
+    width: 100%;
+    position: fixed;
+    height: 1000px;
+    text-align: center;
+    background-color: lightgray;
+    z-index: 20;
+}
+
+    #_loadingImgParent > img {
+    }
+
+._txtSearch {
+    width: 90%;
+    height: 40px;
+    font-size: 25px;
+    padding: 5px;
+    outline: none;
+    text-align: center;
+    border: none;
+}

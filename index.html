@@ -12,99 +12,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
     <!--STYLE-->
-    <style>
+    <link href="css/jesStyle.css" rel="stylesheet" />
 
-        body {
-            background-color: lightgray;
-        }
-
-        ._heading {
-            position: fixed;
-            height: 50px;
-            font-size: 35px;
-            background-color: black;
-            color: darkgray;
-            width: 100%;
-            box-shadow: gray 0 0 15px 5px;
-            z-index: 10;
-        }
-
-        .btn {
-            background-color: #555;
-            color: white;
-        }
-
-            .btn:focus {
-                color: white;
-                outline: none;
-            }
-
-        #btnAdd {
-            float: right;
-            margin: 7px;
-        }
-
-        ._body {
-            text-align: center;
-        }
-
-        ._card {
-            width: 80%;
-            margin: 0 auto;
-            background-color: black;
-            color: white;
-        }
-
-        ._cardHead {
-            text-align: center;
-            height: 25px;
-            font-size: 18px;
-            background-color: #555;
-            color: white;
-        }
-
-        ._cardFoot {
-            text-align: center;
-            height: 25px;
-            font-size: 18px;
-            background-color: #555;
-            color: white;
-            bottom: 0;
-        }
-
-        ._cardContainer {
-            font-size: large;
-            color: darkgray;
-            margin: 5px;
-        }
-
-        #_loadingImgParent {
-            width: 100%;
-            position: fixed;
-            height: 1000px;
-            text-align: center;
-            background-color: white;
-        }
-
-            #_loadingImgParent > img {
-            }
-
-        ._txtSearch {
-            width:90%;
-            height:40px;
-            font-size:25px;
-            padding:5px;
-            outline:none;
-            text-align:center;
-            border:none;
-        }
-
-    </style>
-
-    <!--Loader script-->
     <script>
         $(document).ready(function () {
-            $("#_loadingImgParent").hide();
+            $("#btnHeaderBtn").click(function () {
+                $("body").fadeOut(300, function () {
+                    window.open("/addCust.html", "_self");
+                });
+            });
         });
     </script>
 
@@ -135,7 +51,7 @@
     <!--HEADER-->
     <div class="_heading">
         <span style="margin-left: 20px">jesLogies</span>
-        <button class="btn" id="btnAdd">add</button>
+        <button class="btn" id="btnHeaderBtn">Add</button>
     </div>
 
     <div style="height: 70px;"></div>
@@ -188,7 +104,10 @@
         var app = angular.module('myApp', []);
         app.controller('customersCtrl', function ($scope, $http) {
             $http.get("https://arnoldparge.000webhostapp.com/show_all_cust2.php")
-            .then(function (response) { $scope.names = response.data.records; });
+            .then(function (response) {
+                $scope.names = response.data.records;
+                $("#_loadingImgParent").hide();
+            });
         });
     </script>
 

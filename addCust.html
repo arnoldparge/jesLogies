@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--<script src="js/cordova.js"></script>-->
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <!--STYLE-->
+    <link href="css/jesStyle.css" rel="stylesheet" />
+
+    <script>
+        $(document).ready(function () {
+            $("body").hide();
+            $("body").fadeIn(300);
+
+            $("#btnHeaderBtn").click(function () {
+                $("body").fadeOut(300, function () {
+                    window.open("/index.html", "_self");
+                });
+            });
+
+            $("#btnAddCust").click(function () {
+                $.get("https://arnoldparge.000webhostapp.com/create_cust.php", { cust_name: $("#txtCustName").val(), tot_cost: $("#txtTotCost").val(), app_name: $("#txtAppName").val(), app_type: $("#txtAppType").val() })
+                    .done(function (data) {
+                        if (data == "success") {
+                            alert("Customer added!");
+                        }
+                        else
+                            alert("Sorry, could not add customer. Please check the details again");
+                });
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+
+    <!--HEADER-->
+    <div class="_heading">
+        <span style="margin-left: 20px">jesLogies</span>
+        <button class="btn" id="btnHeaderBtn">Home</button>
+    </div>
+
+    <div style="height: 70px;"></div>
+
+    <!--BODY-->
+    <div class="_body">
+
+        <!--FORM_CONTAINER-->
+        <div style="font-size:large;width:90%;margin:auto;">
+
+            <!--CUST_NAME-->
+            <div class="row">
+                <div class="col-xs-4">
+                    Name: 
+                </div>
+                <div class="col-xs-8">
+                    <input id="txtCustName" class="form-control"  type="text" />
+                </div>
+            </div>
+            <br />
+
+            <!--TOT_COST-->
+            <div class="row">
+                <div class="col-xs-4">
+                    Total Cost: 
+                </div>
+                <div class="col-xs-8">
+                    <input id="txtTotCost" class="form-control"  type="text" />
+                </div>
+            </div>
+            <br />
+
+            <!--APP_NAME-->
+            <div class="row">
+                <div class="col-xs-4">
+                    App Name: 
+                </div>
+                <div class="col-xs-8">
+                    <input id="txtAppName" class="form-control"  type="text" />
+                </div>
+            </div>
+            <br />
+
+            <!--APP_TYPE-->
+            <div class="row">
+                <div class="col-xs-4">
+                    App Type: 
+                </div>
+                <div class="col-xs-8">
+                    <input id="txtAppType" class="form-control"  type="text" />
+                </div>
+            </div>
+            <br />
+
+            <!--SEND_FORM-->
+            <input id="btnAddCust" type="submit" class="btn" style="width:80%;" value="submit" />
+            <br />
+
+        </div>
+    </div>
+
+    <div style="height: 20px;"></div>
+
+
+</body>
+</html>
