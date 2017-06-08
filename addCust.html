@@ -43,6 +43,10 @@
                     .done(function (data) {
                         if (data == "success") {
                             alert("Customer added!");
+                            $("#txtCustName").val('');
+                            $("#txtTotCost").val('');
+                            $("#txtAppName").val('');
+                            $("#txtAppType").val('');
                         }
                         else
                             alert("Sorry, could not add customer. Please check the details again");

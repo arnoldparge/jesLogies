@@ -3,7 +3,7 @@
 <head>
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--<script src="js/cordova.js"></script>-->
+
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <link href="css/bootstrap.css" rel="stylesheet" />
@@ -15,12 +15,27 @@
     <link href="css/jesStyle.css" rel="stylesheet" />
 
     <script>
+
+        document.addEventListener("deviceready", function () {
+            alert("device is ready");
+        }, true);
+
+        function showLoading(txt) {
+            $("#loadingText").text(txt);
+            $("#_loadingImgParent").show();
+        }
+
+        function hideLoading() {
+            $("#_loadingImgParent").hide();
+        }
+
         $(document).ready(function () {
             $("#btnHeaderBtn").click(function () {
                 $("body").fadeOut(300, function () {
                     window.open("addCust.html", "_self");
                 });
             });
+
         });
     </script>
 
@@ -45,7 +60,7 @@
         <img src="images/ajax-loader.gif" />
         <br />
         <br />
-        <b>loaDing...</b>
+        <b id="loadingText">loaDing...</b>
     </div>
 
     <!--HEADER-->
@@ -82,7 +97,7 @@
                             <div class="col-xs-6">
                                 View Instlmnts
                             </div>
-                            <div class="col-xs-3">
+                            <div class="col-xs-3 _btnDelCust" ng-click="funcDelCust(x.cust_id, x.cust_name)">
                                 Del
                             </div>
                         </div>
@@ -106,8 +121,26 @@
             $http.get("https://arnoldparge.000webhostapp.com/show_all_cust2.php")
             .then(function (response) {
                 $scope.names = response.data.records;
-                $("#_loadingImgParent").hide();
+                hideLoading();
             });
+
+            $scope.funcDelCust = function (cid, cname) {
+                var cnfrm = confirm("delete " + cname + "?");
+                if (cnfrm) {
+                    showLoading("deleTing " + cname + "!");
+                    $.get("https://arnoldparge.000webhostapp.com/del_cust.php?cust_id=3", { cust_id: cid })
+                    .done(function (data) {
+                        hideLoading();
+
+                        if (data == "success") {
+                            alert(cname + " deleted!");
+                            window.open('index.html', '_self');
+                        }
+                        else
+                            alert("Sorry, could not delete " + cname + ". Please try again or re-start the app.");
+                    });
+                }
+            }
         });
     </script>
 
