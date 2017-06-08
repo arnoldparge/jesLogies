@@ -20,7 +20,10 @@
 
     <script>
         document.addEventListener("deviceready", function () {
-            alert("123");
+            document.addEventListener("backbutton", function (e) {
+                e.preventDefault();
+                alert("back button is pressed");
+            });
         }, true);
 
     </script>
