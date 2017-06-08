@@ -22,8 +22,11 @@
         document.addEventListener("deviceready", function () {
             document.addEventListener("backbutton", function (e) {
                 e.preventDefault();
-                if (confirm("You sure, want to exit?"))
+
+                navigator.notification.confirm("You sure, want to exit?", function () {
                     navigator.app.exitApp();
+                }, "Leave app", "LEAVE");
+
             });
 
         }, true);
@@ -155,16 +158,15 @@
             }
 
             $scope.funcEditCust = function (id, name, tot_cost, app_name, app_type) {
-                //alert(id + ',' + name + ',' + tot_cost + ',' + app_name + ',' + app_type);
-                if (confirm("Are you sure about editing " + name + "'s details")) {
-                    localStorage.id = id;
-                    localStorage.name = name;
-                    localStorage.tot_cost = tot_cost;
-                    localStorage.app_name = app_name;
-                    localStorage.app_type = app_type;
 
-                    window.open('editCust.html', '_self');
-                }
+                localStorage.id = id;
+                localStorage.name = name;
+                localStorage.tot_cost = tot_cost;
+                localStorage.app_name = app_name;
+                localStorage.app_type = app_type;
+
+                window.open('editCust.html', '_self');
+
             }
         });
     </script>
