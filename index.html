@@ -20,14 +20,23 @@
 
     <script>
         document.addEventListener("deviceready", function () {
-            if (prompt("Enter pass code:") != "qwerty")
-                navigator.app.exitApp();
+
+            //navigator.notification.alert(
+            //    'Welcome to jeslogies!',  // message
+            //    null,         // callback
+            //    'WELCOME',            // title
+            //    'Thanks'                  // buttonName
+            //);
+
+            alert("asd");
+
 
             document.addEventListener("backbutton", function (e) {
                 e.preventDefault();
                 if (confirm("You sure, want to exit?"))
                     navigator.app.exitApp();
             });
+
         }, true);
 
     </script>
@@ -105,7 +114,7 @@
                     </div>
                     <div class="_cardFoot">
                         <div class="row">
-                            <div class="col-xs-3">
+                            <div class="col-xs-3" ng-click="funcEditCust(x.cust_id,x.cust_name,x.tot_cost,x.app_name,x.app_type)">
                                 Edit
                             </div>
                             <div class="col-xs-6">
@@ -153,6 +162,19 @@
                         else
                             alert("Sorry, could not delete " + cname + ". Please try again or re-start the app.");
                     });
+                }
+            }
+
+            $scope.funcEditCust = function (id, name, tot_cost, app_name, app_type) {
+                //alert(id + ',' + name + ',' + tot_cost + ',' + app_name + ',' + app_type);
+                if (confirm("Are you sure about editing " + name + "'s details")) {
+                    localStorage.id = id;
+                    localStorage.name = name;
+                    localStorage.tot_cost = tot_cost;
+                    localStorage.app_name = app_name;
+                    localStorage.app_type = app_type;
+
+                    window.open('editCust.html', '_self');
                 }
             }
         });

@@ -39,24 +39,29 @@
             $("body").hide();
             $("body").fadeIn(300);
 
+            $("#txtCustName").val(localStorage.name);
+            $("#txtTotCost").val(localStorage.tot_cost);
+            $("#txtAppName").val(localStorage.app_name);
+            $("#txtAppType").val(localStorage.app_type);
+
             $("#btnHeaderBtn").click(function () {
                 $("body").fadeOut(300, function () {
                     window.open("index.html", "_self");
                 });
             });
 
-            $("#btnAddCust").click(function () {
-                $.get("https://arnoldparge.000webhostapp.com/create_cust.php", { cust_name: $("#txtCustName").val(), tot_cost: $("#txtTotCost").val(), app_name: $("#txtAppName").val(), app_type: $("#txtAppType").val() })
+            $("#btnEditCust").click(function () {
+                $.get("https://arnoldparge.000webhostapp.com/update_cust.php", { cust_id:localStorage.id, cust_name: $("#txtCustName").val(), tot_cost: $("#txtTotCost").val(), app_name: $("#txtAppName").val(), app_type: $("#txtAppType").val() })
                     .done(function (data) {
                         if (data == "success") {
-                            alert("Customer added!");
+                            alert("Customer Updated!");
                             $("#txtCustName").val('');
                             $("#txtTotCost").val('');
                             $("#txtAppName").val('');
                             $("#txtAppType").val('');
                         }
                         else
-                            alert("Sorry, could not add customer. Please check the details again");
+                            alert("Sorry, could not update customer. Please check the details again");
                     });
             });
 
@@ -127,7 +132,7 @@
             <br />
 
             <!--SEND_FORM-->
-            <input id="btnAddCust" type="submit" class="btn" style="width: 80%;" value="submit" />
+            <input id="btnEditCust" type="submit" class="btn" style="width: 80%;" value="Update details" />
             <br />
 
         </div>
