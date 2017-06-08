@@ -23,9 +23,10 @@
             document.addEventListener("backbutton", function (e) {
                 e.preventDefault();
 
-                navigator.notification.confirm("You sure, want to exit?", function () {
-                    navigator.app.exitApp();
-                }, "Leave app", "LEAVE");
+                navigator.notification.confirm("You sure, want to exit?", function (opt) {
+                    if(opt==1)
+                        navigator.app.exitApp();
+                }, "Leave app", ['LEAVE','STAY']);
 
             });
 
