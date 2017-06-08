@@ -147,7 +147,7 @@
                     if (opt == 1)
                     {
                         showLoading("deleTing " + cname + "!");
-                        $.get("https://arnoldparge.000webhostapp.com/del_cust.php?cust_id=3", { cust_id: cid })
+                        $.get("https://arnoldparge.000webhostapp.com/del_cust.php", { cust_id: cid })
                         .done(function (data) {
                             hideLoading();
 
@@ -160,11 +160,6 @@
                         });
                     }
                 }, "DELETE", ["Yes", "No"]);
-
-                var cnfrm = confirm("delete " + cname + "?");
-                if (cnfrm) {
-                    
-                }
             }
 
             $scope.funcEditCust = function (id, name, tot_cost, app_name, app_type) {
