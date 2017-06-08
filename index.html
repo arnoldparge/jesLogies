@@ -90,9 +90,6 @@
     <!--BODY-->
     <div class="_body">
 
-        <button onclick="window.plugins.insomnia.keepAwake()">keep awake</button>
-        <button onclick="window.plugins.insomnia.allowSleepAgain()">allow sleep again</button>
-
 
         <div ng-app="myApp" ng-controller="customersCtrl">
             <input type="text" class="_txtSearch" placeholder="Search Here" ng-model="txtsearch" />
@@ -145,20 +142,28 @@
             });
 
             $scope.funcDelCust = function (cid, cname) {
+
+                navigator.notification.confirm("Delete " + cname + "?", function (opt) {
+                    if (opt == 1)
+                    {
+                        showLoading("deleTing " + cname + "!");
+                        $.get("https://arnoldparge.000webhostapp.com/del_cust.php?cust_id=3", { cust_id: cid })
+                        .done(function (data) {
+                            hideLoading();
+
+                            if (data == "success") {
+                                navigator.notification.alert(cname + "deleted!", null, "Deletion Status", "Thanks");
+                                window.open('index.html', '_self');
+                            }
+                            else
+                                navigator.notification.alert("Sorry, could not delete " + cname + ". Please try again or re-start the app.", null, "Deletion Status", "Never Mind!");
+                        });
+                    }
+                }, "DELETE", ["Yes", "No"]);
+
                 var cnfrm = confirm("delete " + cname + "?");
                 if (cnfrm) {
-                    showLoading("deleTing " + cname + "!");
-                    $.get("https://arnoldparge.000webhostapp.com/del_cust.php?cust_id=3", { cust_id: cid })
-                    .done(function (data) {
-                        hideLoading();
-
-                        if (data == "success") {
-                            alert(cname + " deleted!");
-                            window.open('index.html', '_self');
-                        }
-                        else
-                            alert("Sorry, could not delete " + cname + ". Please try again or re-start the app.");
-                    });
+                    
                 }
             }
 

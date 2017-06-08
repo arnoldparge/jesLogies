@@ -54,14 +54,14 @@
                 $.get("https://arnoldparge.000webhostapp.com/update_cust.php", { cust_id:localStorage.id, cust_name: $("#txtCustName").val(), tot_cost: $("#txtTotCost").val(), app_name: $("#txtAppName").val(), app_type: $("#txtAppType").val() })
                     .done(function (data) {
                         if (data == "success") {
-                            alert("Customer Updated!");
+                            navigator.notification.alert("Customer Updated!", null, "Updation Status", "Thanks");
                             $("#txtCustName").val('');
                             $("#txtTotCost").val('');
                             $("#txtAppName").val('');
                             $("#txtAppType").val('');
                         }
                         else
-                            alert("Sorry, could not update customer. Please check the details again");
+                            navigator.notification.alert("Sorry, could not update customer. Please check the details again", null, "Updation Status", "Never Mind!");
                     });
             });
 
