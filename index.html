@@ -20,9 +20,13 @@
 
     <script>
         document.addEventListener("deviceready", function () {
+            if (prompt("Enter pass code:") != "qwerty")
+                navigator.app.exitApp();
+
             document.addEventListener("backbutton", function (e) {
                 e.preventDefault();
-                alert("back button is pressed");
+                if (confirm("You sure, want to exit?"))
+                    navigator.app.exitApp();
             });
         }, true);
 
