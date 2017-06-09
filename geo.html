@@ -19,7 +19,9 @@
 		
 			alert("device ready!");
 			
-			var watchId = navigator.geolocation.watchPosition(onSuccess, onError);
+			var watchId = navigator.geolocation.watchPosition(onSuccess, onError, options);
+			
+			var options = { frequency: 1000 }
 			
 			function onSuccess(position)
 			{
