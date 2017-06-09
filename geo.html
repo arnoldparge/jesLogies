@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <!--STYLE-->
+    <link href="css/jesStyle.css" rel="stylesheet" />
+
+    <script>
+
+        document.addEventListener("deviceready", function () {
+		
+			var watchId = navigator.geolocation.watchPosition(geolocationSuccess, [geolocationError], [geolocationOptions]);
+			
+			document.getElementById("Latitude").innerHTML(position.coords.latitude);
+			document.getElementById("Altitude").innerHTML(position.coords.altitude);
+			document.getElementById("Accuracy").innerHTML(position.coords.accuracy);
+			document.getElementById("AltitudeAccuracy").innerHTML(position.coords.altitudeAccuracy);
+			document.getElementById("Heading").innerHTML(position.coords.heading);
+			document.getElementById("Speed").innerHTML(position.coords.speed);
+			document.getElementById("Timestamp").innerHTML(position.coords.timestamp);
+			
+        }, false);
+    </script>
+
+</head>
+<body>
+	
+	Latitude : <span id="Latitude"></span> <br /> <br />
+	Longitude : <span id="Longitude"></span> <br /> <br />
+	Altitude : <span id="Altitude"></span> <br /> <br />
+	Accuracy : <span id="Accuracy"></span> <br /> <br />
+	Altitude Accuracy : <span id="AltitudeAccuracy"></span> <br /> <br />
+	Heading : <span id="Heading"></span> <br /> <br />
+	Speed : <span id="Speed"></span> <br /> <br />
+	Timestamp : <span id="Timestamp"></span> <br /> <br />
+	
+	
+    <script type="text/javascript" src="cordova.js"></script>
+	
+</body>
+</html>
