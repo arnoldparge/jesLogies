@@ -17,15 +17,23 @@
 
         document.addEventListener("deviceready", function () {
 		
-			var watchId = navigator.geolocation.watchPosition(geolocationSuccess, [geolocationError], [geolocationOptions]);
+			var watchId = navigator.geolocation.watchPosition(onSuccess, onError);
 			
-			document.getElementById("Latitude").innerHTML(position.coords.latitude);
-			document.getElementById("Altitude").innerHTML(position.coords.altitude);
-			document.getElementById("Accuracy").innerHTML(position.coords.accuracy);
-			document.getElementById("AltitudeAccuracy").innerHTML(position.coords.altitudeAccuracy);
-			document.getElementById("Heading").innerHTML(position.coords.heading);
-			document.getElementById("Speed").innerHTML(position.coords.speed);
-			document.getElementById("Timestamp").innerHTML(position.coords.timestamp);
+			function onSuccess(position)
+			{
+				document.getElementById("Latitude").innerHTML(position.coords.latitude);
+				document.getElementById("Altitude").innerHTML(position.coords.altitude);
+				document.getElementById("Accuracy").innerHTML(position.coords.accuracy);
+				document.getElementById("AltitudeAccuracy").innerHTML(position.coords.altitudeAccuracy);
+				document.getElementById("Heading").innerHTML(position.coords.heading);
+				document.getElementById("Speed").innerHTML(position.coords.speed);
+				document.getElementById("Timestamp").innerHTML(position.coords.timestamp);
+			}
+			
+			function onError(error) {
+				alert('code: '    + error.code    + '\n' +
+					  'message: ' + error.message + '\n');
+			}
 			
         }, false);
     </script>
