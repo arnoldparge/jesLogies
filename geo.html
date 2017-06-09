@@ -21,11 +21,12 @@
 			
 			var watchId = navigator.geolocation.watchPosition(onSuccess, onError, options);
 			
-			var options = { frequency: 1000 }
+			var options = { frequency: 500 }
 			
 			function onSuccess(position)
 			{
 				document.getElementById("Latitude").innerHTML = position.coords.latitude;
+				document.getElementById("Longitude").innerHTML = position.coords.longitude;
 				document.getElementById("Altitude").innerHTML = position.coords.altitude;
 				document.getElementById("Accuracy").innerHTML = position.coords.accuracy;
 				document.getElementById("AltitudeAccuracy").innerHTML = position.coords.altitudeAccuracy;
