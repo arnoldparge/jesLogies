@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1084406932603",
+    "firebase_url": "https://firstdemo-66b16.firebaseio.com",
+    "project_id": "firstdemo-66b16",
+    "storage_bucket": "firstdemo-66b16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084406932603:android:40407f112a649614",
+        "android_client_info": {
+          "package_name": "com.jeslogies.jeslogies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1084406932603-dkp1u4dvtm87bs26hc0opiev1b227q8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuInjla_C271_z-tvSMAiii62fL4S_AqY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
