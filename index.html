@@ -24,16 +24,19 @@
 
         document.addEventListener("deviceready", function () {
             document.addEventListener("backbutton", function (e) {
+                if (confirm("Do you want to exit?")) {
+                    navigator.app.exitApp();
+                }
 
-                $(document).live('pagebeforeshow', function () {
-                    if ($.mobile.activePage.attr('id') == "startPage")
-                    {
-                        if(confirm("Do you want to exit?"))
-                        {
-                            navigator.app.exitApp();
-                        }
-                    }
-                });
+                //$(document).live('pagebeforeshow', function () {
+                //    if ($.mobile.activePage.attr('id') == "startPage")
+                //    {
+                //        if(confirm("Do you want to exit?"))
+                //        {
+                //            navigator.app.exitApp();
+                //        }
+                //    }
+                //});
 
             }, false);
         }, false);
