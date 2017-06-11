@@ -1,187 +1,186 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
+
 <head>
-    <title></title>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-    <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <title>SA Project</title>
 
+    <link rel="stylesheet" href="jquery/jquery.mobile-1.4.5.css" />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="jquery/jquery.mobile-1.4.5.js"></script>
+    <link rel="stylesheet" href="themes/SA-project-theme.min.css" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-
-    <!--STYLE-->
-    <link href="css/jesStyle.css" rel="stylesheet" />
+    <style>
+        ._menu-list {
+            width: 100%;
+        }
+    </style>
 
     <script>
+
+        var __curPage = "#startPage";
+
         document.addEventListener("deviceready", function () {
             document.addEventListener("backbutton", function (e) {
                 e.preventDefault();
 
-                navigator.notification.confirm("You sure, want to exit?", function (opt) {
-                    if(opt==1)
-                        navigator.app.exitApp();
-                }, "Leave app", ['LEAVE','STAY']);
+                if (__curPage == "#startPage")
+                {
+                    navigator.notification.confirm("Do you want to exit?", function (opt) {
+                        if (opt == 1)
+                            navgator.app.exitApp();
+                    }, "EXITING", ["Yes", "No"]);
+                }
 
-            });
+                if (__curPage == "#loginPage") {
+                    $("#loginPage div ._btn-back").click();
+                }
 
-        }, true);
+                if (__curPage == "#signUpPage") {
+                    $("#loginPage div ._btn-back").click();
+                }
 
-    </script>
-
-    <script>
-
-        function showLoading(txt) {
-            $("#loadingText").text(txt);
-            $("#_loadingImgParent").show();
-        }
-
-        function hideLoading() {
-            $("#_loadingImgParent").hide();
-        }
+            }, false);
+        }, false);
 
         $(document).ready(function () {
-            $("#btnHeaderBtn").click(function () {
-                $("body").fadeOut(300, function () {
-                    window.open("addCust.html", "_self");
-                });
+            $(".ui-btn").click(function () {
+                __curPage = $(this).attr('href');
             });
-
         });
+
     </script>
 
 </head>
+
 <body>
 
-    <!--LOADING-->
-    <div id="_loadingImgParent">
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+    <!--START PAGE-->
+    <div data-role="page" id="startPage">
 
-        <img src="images/ajax-loader.gif" />
-        <br />
-        <br />
-        <b id="loadingText">loaDing...</b>
-    </div>
-
-    <!--HEADER-->
-    <div class="_heading">
-        <span style="margin-left: 20px">jesLogies</span>
-        <button class="btn" id="btnHeaderBtn">Add</button>
-    </div>
-
-    <div style="height: 70px;"></div>
-
-    <!--BODY-->
-    <div class="_body">
-
-
-        <div ng-app="myApp" ng-controller="customersCtrl">
-            <input type="text" class="_txtSearch" placeholder="Search Here" ng-model="txtsearch" />
-            <br />
-            <br />
-
-            <div ng-repeat="x in names|filter : txtsearch">
-                <div class="_card">
-                    <div class="_cardHead">{{ x.cust_name }}</div>
-                    <div class="_cardContainer">
-                        Total Cost: <b>{{ x.tot_cost }} </b>
-                        <br />
-                        App Name: {{ x.app_name }} 
-                        <br />
-                        App Type: {{ x.app_type }} 
-                    </div>
-                    <div class="_cardFoot">
-                        <div class="row">
-                            <div class="col-xs-3" ng-click="funcEditCust(x.cust_id,x.cust_name,x.tot_cost,x.app_name,x.app_type)">
-                                Edit
-                            </div>
-                            <div class="col-xs-6">
-                                View Instlmnts
-                            </div>
-                            <div class="col-xs-3 _btnDelCust" ng-click="funcDelCust(x.cust_id, x.cust_name)">
-                                Del
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br />
-            </div>
+        <div data-role="panel" id="myMenu">
+            <a class="ui-btn">item one</a>
+            <a class="ui-btn">item one</a>
+            <a class="ui-btn">item one</a>
+            <!--<ul data-role="listview" class="_menu-list">
+                <li><a href="#">List Item</a></li>
+                <li><a href="#">List Item</a></li>
+                <li><a href="#">List Item</a></li>
+            </ul>-->
 
         </div>
 
+        <div data-role="header">
+            <h1>Welcome Screen</h1>
 
+            <a class="ui-btn ui-corner-all ui-icon-bars ui-btn-icon-notext" href="#myMenu">Menu</a>
+        </div>
+
+        <div data-role="main" class="ui-content">
+
+            <img src="img/logo1.png" style="width:100%;" />
+            
+            <br />
+            <br />
+            <br />
+
+            <a class="ui-btn" href="#loginPage" data-transition="pop">Login</a>
+
+            <a class="ui-btn" href="#signUpPage" data-transition="pop">Sign up</a>
+
+        </div>
     </div>
 
-    <div style="height: 20px;"></div>
+    <!--LOGIN PAGE-->
+    <div data-role="page" id="loginPage">
+        <div data-role="header">
+            <h1>Login</h1>
+            <a class="ui-btn ui-btn-right _btn-back" href="#startPage" data-transition="pop" data-direction="reverse">Back</a>
+        </div>
+        <div data-role="main" class="ui-content">
 
+            <div class="ui-field-contain">
+                <label for="txtUid">User ID:</label>
+                <input type="text" name="txtUid" id="txtUid" value="" placeholder="User ID">
+            </div>
 
+            <div class="ui-field-contain">
+                <label for="txtPassword">Password:</label>
+                <input type="text" name="txtPassword" id="txtPassword" value="" placeholder="User Password">
+            </div>
 
-    <script>
-        var app = angular.module('myApp', []);
-        app.controller('customersCtrl', function ($scope, $http) {
-            $http.get("https://arnoldparge.000webhostapp.com/show_all_cust2.php")
-            .then(function (response) {
-                $scope.names = response.data.records;
-                hideLoading();
-            });
+            <div class="ui-field-contain">
+                <input type="submit" name="btnSubmit" id="btnSubmit" value="Login">
+            </div>
 
-            $scope.funcDelCust = function (cid, cname) {
+        </div>
+    </div>
 
-                navigator.notification.confirm("Delete " + cname + "?", function (opt) {
-                    if (opt == 1)
-                    {
-                        showLoading("deleTing " + cname + "!");
-                        $.get("https://arnoldparge.000webhostapp.com/del_cust.php", { cust_id: cid })
-                        .done(function (data) {
-                            hideLoading();
+    <!--SIGNUP PAGE-->
+    <div data-role="page" id="signUpPage">
 
-                            if (data == "success") {
-                                navigator.notification.alert(cname + "deleted!", null, "Deletion Status", "Thanks");
-                                window.open('index.html', '_self');
-                            }
-                            else
-                                navigator.notification.alert("Sorry, could not delete " + cname + ". Please try again or re-start the app.", null, "Deletion Status", "Never Mind!");
-                        });
-                    }
-                }, "DELETE", ["Yes", "No"]);
-            }
+        <div data-role="header" data-position="fixed">
+            <h1>Registeration</h1>
+            <a class="ui-btn ui-btn-right _btn-back" href="#startPage" data-transition="pop" data-direction="reverse">Back</a>
+        </div>
 
-            $scope.funcEditCust = function (id, name, tot_cost, app_name, app_type) {
+        <div data-role="main" class="ui-content">
 
-                localStorage.id = id;
-                localStorage.name = name;
-                localStorage.tot_cost = tot_cost;
-                localStorage.app_name = app_name;
-                localStorage.app_type = app_type;
+            <div class="ui-field-contain">
+                <label for="txtName">Full Name:</label>
+                <input type="text" name="text" id="txtName" value="" placeholder="What's Your Name?">
+            </div>
 
-                window.open('editCust.html', '_self');
+            <div class="ui-field-contain">
+                <label for="txtNumber">Number</label>
+                <input type="number" name="number" id="txtNumber" value="" placeholder="Your contact number">
+            </div>
 
-            }
-        });
-    </script>
+            <div class="ui-field-contain">
+                <label for="search">Email</label>
+                <input type="email" name="search" id="txtEmail" value="" placeholder="Your Email ID">
+            </div>
 
+            <div class="ui-field-contain">
+                <label for="date">Today's date:</label>
+                <input type="date" name="date" id="date" value="">
+            </div>
+
+            <div class="ui-field-contain">
+                <label for="colors">Choose Favorite Color:</label>
+                <select id="colors" name="colors">
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                </select>
+            </div>
+
+            <div class="ui-field-contain">
+                <label for="switch">Flip Switch:</label>
+                <input type="checkbox" data-role="flipswitch" name="switch" id="switch">
+            </div>
+
+            <div class="ui-field-contain">
+                <legend>Choose Favorite Movies:</legend>
+                <label for="mov1">The Shawshank Redemption</label>
+                <input type="checkbox" name="mov1" id="mov1">
+                <label for="mov2">The Godfather</label>
+                <input type="checkbox" name="mov2" id="mov2">
+                <label for="mov3">Pulp Fiction</label>
+                <input type="checkbox" name="mov3" id="mov3">
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript" src="cordova.js"></script>
-    <script src="js/index.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
         app.initialize();
     </script>
-
 </body>
+
 </html>
