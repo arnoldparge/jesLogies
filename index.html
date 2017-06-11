@@ -22,46 +22,21 @@
 
     <script>
 
-        var pageHistoryCount = 0;
-        var goingBack = false;
+        document.addEventListener("deviceready", function () {
+            document.addEventListener("backbutton", function (e) {
 
-        $(document).bind("pageshow", function (e, data) {
-            if (goingBack) {
-                goingBack = false;
-            } else {
-                pageHistoryCount++;
-                console.log("Showing page #" + pageHistoryCount);
-            }
-        });
-
-        function exitApp() {
-            console.log("Exiting app");
-            navigator.app.exitApp();
-        }
-
-        function onPressBack(e) {
-            e.preventDefault();
-            if (pageHistoryCount > 0) pageHistoryCount--;
-            if (pageHistoryCount == 0) {
-
-                navigator.notification.confirm("Are you sure you want to quit?", function (result) {
-                    if (result == 2) {
-                        exitApp();
-                    } else {
-                        pageHistoryCount++;
+                $(document).live('pagebeforeshow', function () {
+                    if ($.mobile.activePage.attr('id') == "startPage")
+                    {
+                        if(confirm("Do you want to exit?"))
+                        {
+                            navigator.app.exitApp();
+                        }
                     }
-                }, 'Quit My App', 'Cancel,Ok');
-            } else {
-                goingBack = true;
-                console.log("Going back to page #" + pageHistoryCount);
-                window.history.back();
-            }
-        }
+                });
 
-        function deviceready() {
-            $(document).bind('backbutton', onPressBack);
-        }
-        $(document).bind('deviceready', deviceready);
+            }, false);
+        }, false);
 
     </script>
 
