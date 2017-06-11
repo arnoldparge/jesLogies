@@ -22,7 +22,7 @@
 
     <script>
 
-        var __curPage = "#startPage";
+        var __curPage;
 
         document.addEventListener("deviceready", function () {
             document.addEventListener("backbutton", function (e) {
@@ -48,6 +48,9 @@
         }, false);
 
         $(document).ready(function () {
+
+            __curPage = "#startPage";
+
             $(".ui-btn").click(function () {
                 __curPage = $(this).attr('href');
             });
